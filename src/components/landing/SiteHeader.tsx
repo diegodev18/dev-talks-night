@@ -3,7 +3,6 @@ import { cn } from "@/lib/utils"
 
 const nav = [
   { label: "Inicio", href: "#" },
-  { label: "Eventos", href: "/agenda.html" },
   { label: "Nosotros", href: "#about" },
   { label: "Evento", href: "#evento" },
   { label: "Programa", href: "#agenda" },

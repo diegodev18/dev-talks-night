@@ -1,7 +1,6 @@
-import { InstagramIcon, TiktokIcon } from "@hugeicons/core-free-icons"
-import { HugeiconsIcon } from "@hugeicons/react"
-
 import { Button } from "@/components/ui/button"
+import { Instagram } from "@/components/ui/svgs/instagram"
+import { Tiktok } from "@/components/ui/svgs/tiktok"
 import { Separator } from "@/components/ui/separator"
 
 const year = new Date().getFullYear()
@@ -10,12 +9,12 @@ const social = [
   {
     label: "Instagram",
     href: "https://www.instagram.com/devnighttalks/",
-    icon: InstagramIcon,
+    Icon: Instagram,
   },
   {
     label: "TikTok",
     href: "https://www.tiktok.com/@devnighttalks",
-    icon: TiktokIcon,
+    Icon: Tiktok,
   },
 ] as const
 
@@ -28,7 +27,7 @@ export function SiteFooter() {
           © {year} — Dev Night Talks Villahermosa
         </p>
         <div className="flex flex-wrap items-center justify-center gap-1">
-          {social.map(({ label, href, icon }) => (
+          {social.map(({ label, href, Icon }) => (
             <Button key={label} variant="ghost" size="icon-sm" asChild>
               <a
                 href={href}
@@ -36,7 +35,7 @@ export function SiteFooter() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <HugeiconsIcon icon={icon} strokeWidth={1.5} />
+                <Icon aria-hidden />
               </a>
             </Button>
           ))}

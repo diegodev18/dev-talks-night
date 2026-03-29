@@ -32,22 +32,26 @@ export function FaqSection() {
   return (
     <section
       id="faq"
-      className="flex flex-col gap-6"
+      className="flex flex-col items-center gap-6"
       aria-labelledby="faq-heading"
     >
-      <div className="flex flex-col gap-2">
+      <div className="mx-auto flex max-w-2xl flex-col items-center gap-2 text-center">
         <h2
           id="faq-heading"
           className="font-heading text-lg font-medium text-foreground sm:text-xl"
         >
           Preguntas frecuentes
         </h2>
-        <p className="max-w-2xl text-sm text-muted-foreground">
+        <p className="text-pretty text-sm text-muted-foreground">
           Respuestas rápidas; si te falta algo, pregunta en el próximo meetup o
           por mensaje en Instagram o TikTok.
         </p>
       </div>
-      <Accordion type="single" collapsible className="max-w-2xl">
+      <Accordion
+        type="single"
+        collapsible
+        className="mx-auto w-full max-w-2xl"
+      >
         {faqs.map((item, i) => (
           <AccordionItem key={item.q} value={`faq-${i}`}>
             <AccordionTrigger>{item.q}</AccordionTrigger>

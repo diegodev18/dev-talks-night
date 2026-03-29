@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button"
+import { GithubDark } from "@/components/ui/svgs/githubDark"
 import { Instagram } from "@/components/ui/svgs/instagram"
 import { Tiktok } from "@/components/ui/svgs/tiktok"
 import { Separator } from "@/components/ui/separator"
@@ -15,6 +16,11 @@ const social = [
     label: "TikTok",
     href: "https://www.tiktok.com/@devnighttalks",
     Icon: Tiktok,
+  },
+  {
+    label: "Repositorio en GitHub",
+    href: "https://github.com/diegodev18/dev-talks-night",
+    Icon: GithubDark,
   },
 ] as const
 

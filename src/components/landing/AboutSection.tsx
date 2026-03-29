@@ -2,7 +2,7 @@ export function AboutSection() {
   return (
     <section
       id="about"
-      className="flex flex-col gap-6"
+      className="scroll-mt-24 flex flex-col gap-6"
       aria-labelledby="about-heading"
     >
       <div className="flex flex-col gap-2">

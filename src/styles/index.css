@@ -269,6 +269,11 @@
     @apply bg-background text-foreground;
     }
   html {
-    @apply font-mono;
+    @apply scroll-smooth font-mono;
     }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
 }

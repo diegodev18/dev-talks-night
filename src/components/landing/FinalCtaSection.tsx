@@ -5,7 +5,7 @@ export function FinalCtaSection() {
   return (
     <section
       id="final-cta"
-      className="flex flex-col gap-8"
+      className="scroll-mt-24 flex flex-col gap-8"
       aria-labelledby="final-cta-heading"
     >
       <Separator />

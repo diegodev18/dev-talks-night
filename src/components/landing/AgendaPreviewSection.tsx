@@ -29,7 +29,7 @@ export function AgendaPreviewSection() {
   return (
     <section
       id="agenda"
-      className="flex flex-col gap-8"
+      className="scroll-mt-24 flex flex-col gap-8"
       aria-labelledby="agenda-heading"
     >
       <div className="flex flex-col gap-2">

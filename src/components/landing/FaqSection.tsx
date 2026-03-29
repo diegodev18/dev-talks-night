@@ -32,7 +32,7 @@ export function FaqSection() {
   return (
     <section
       id="faq"
-      className="flex flex-col items-center gap-6"
+      className="scroll-mt-24 flex flex-col items-center gap-6"
       aria-labelledby="faq-heading"
     >
       <div className="mx-auto flex max-w-2xl flex-col items-center gap-2 text-center">

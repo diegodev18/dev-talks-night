@@ -10,7 +10,7 @@ export function PartnersSection() {
   return (
     <section
       id="partners"
-      className="flex flex-col gap-8"
+      className="scroll-mt-24 flex flex-col gap-8"
       aria-labelledby="partners-heading"
     >
       <p

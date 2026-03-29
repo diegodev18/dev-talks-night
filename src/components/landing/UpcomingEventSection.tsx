@@ -12,7 +12,7 @@ export function UpcomingEventSection() {
   return (
     <section
       id="evento"
-      className="grid gap-10 lg:grid-cols-2 lg:items-center"
+      className="scroll-mt-24 grid gap-10 lg:grid-cols-2 lg:items-center"
       aria-labelledby="event-heading"
     >
       <div className="flex justify-center lg:justify-start">

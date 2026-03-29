@@ -1,0 +1,18 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Dev Night Talks//Evento//ES
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:7f2a9c1e-dev-night-2026-04-02@devnighttalks
+DTSTAMP:20260329T180000Z
+DTSTART:20260403T010000Z
+DTEND:20260403T030000Z
+SUMMARY:Dev Night Talks
+DESCRIPTION:Villahermosa. Charlas\, networking y comunidad tech.\n\nConfirma fecha y lugar en @devnighttalks (Instagram).
+LOCATION:LATI.mx\, Plaza deportiva (La Mega)\, 1er piso sobre el banco HSBC\, Villahermosa\, Tabasco\, México
+URL:https://www.instagram.com/devnighttalks/
+STATUS:TENTATIVE
+SEQUENCE:0
+END:VEVENT
+END:VCALENDAR

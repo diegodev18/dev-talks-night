@@ -59,7 +59,13 @@ export function AgendaPreviewSection() {
       </div>
       <div className="flex flex-wrap gap-3">
         <Button variant="outline" asChild>
-          <a href="/agenda.html">Ver agenda completa</a>
+          <a
+            href="/dev-night-talks.ics"
+            download="dev-night-talks.ics"
+            type="text/calendar"
+          >
+            Agendar próximo Dev Night Talks
+          </a>
         </Button>
       </div>
     </section>

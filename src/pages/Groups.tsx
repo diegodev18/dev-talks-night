@@ -1,4 +1,5 @@
-import { useState } from "react"
+import { useState, type ReactNode } from "react"
+import { Link } from "react-router-dom"
 
 import { SiteFooter } from "@/components/landing/SiteFooter"
 import { SiteHeader } from "@/components/landing/SiteHeader"
@@ -12,14 +13,24 @@ import { Layout } from "@/components/layout/Layout"
 
 /**
  * Rutas bajo public/groups/ — .webp. Si renombran archivos, actualizar imageSrc.
+ * `href`: string = tarjeta enlazada; `null` = tarjeta estática.
  */
-const communities = [
+type Community = {
+  name: string
+  description: string
+  imageSrc: string
+  initials: string
+  href: string | null
+}
+
+const communities: Community[] = [
   {
     name: "AWS Villahermosa",
     description:
       "Comunidad en torno a la nube AWS: buenas prácticas, arquitectura y experiencias locales.",
     imageSrc: "/groups/aws.webp",
     initials: "AWS",
+    href: null,
   },
   {
     name: "Cursor Villahermosa",
@@ -27,6 +38,7 @@ const communities = [
       "Espacio para quienes usan Cursor y herramientas de desarrollo con asistencia de IA.",
     imageSrc: "/groups/cursor.webp",
     initials: "CU",
+    href: null,
   },
   {
     name: "Claude Villahermosa",
@@ -34,15 +46,50 @@ const communities = [
       "Encuentros y conversación en torno a Claude y el ecosistema de IA conversacional.",
     imageSrc: "/groups/claude.webp",
     initials: "CL",
+    href: null,
   },
-] as const
+]
 
-type CommunityCardProps = (typeof communities)[number]
+const communityCardLinkClass =
+  "block text-inherit no-underline outline-none transition-opacity hover:opacity-95 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
 
-function CommunityCard({ name, description, imageSrc, initials }: CommunityCardProps) {
+function CommunityCardLink({
+  href,
+  children,
+}: {
+  href: string
+  children: ReactNode
+}) {
+  if (href.startsWith("/")) {
+    return (
+      <Link to={href} className={communityCardLinkClass}>
+        {children}
+      </Link>
+    )
+  }
+  if (/^https?:\/\//i.test(href)) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={communityCardLinkClass}
+      >
+        {children}
+      </a>
+    )
+  }
+  return (
+    <a href={href} className={communityCardLinkClass}>
+      {children}
+    </a>
+  )
+}
+
+function CommunityCard({ name, description, imageSrc, initials, href }: Community) {
   const [imageFailed, setImageFailed] = useState(false)
 
-  return (
+  const card = (
     <Card
       className="gap-0 overflow-hidden p-0 py-0 data-[size=sm]:gap-0 data-[size=sm]:py-0"
       size="sm"
@@ -75,6 +122,12 @@ function CommunityCard({ name, description, imageSrc, initials }: CommunityCardP
       </CardHeader>
     </Card>
   )
+
+  if (href) {
+    return <CommunityCardLink href={href}>{card}</CommunityCardLink>
+  }
+
+  return card
 }
 
 export default function Groups() {

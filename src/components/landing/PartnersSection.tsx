@@ -4,7 +4,7 @@ import { Lati } from "@/components/ui/svgs/lati"
 import TavoDev from "@/components/ui/svgs/tavoDev"
 
 const partnerClass =
-  "block transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+  "block focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring hover:scale-110 transition-all duration-150"
 
 export function PartnersSection() {
   return (

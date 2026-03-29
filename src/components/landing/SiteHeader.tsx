@@ -19,7 +19,7 @@ export function SiteHeader() {
           DEV
         </span>
         <span className="font-heading text-sm font-semibold tracking-tight text-foreground sm:text-base">
-          NIGHT TALKS
+          TALKS NIGHT
         </span>
       </div>
       <nav

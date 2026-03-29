@@ -15,7 +15,7 @@ export function HeroSection() {
           id="hero-title"
           className="font-heading text-3xl font-semibold tracking-tight text-foreground sm:text-4xl md:text-5xl"
         >
-          DEV NIGHT TALKS
+          DEV TALKS NIGHT
         </h1>
         <p className="text-pretty text-sm text-muted-foreground sm:text-base md:text-lg">
           Conéctate, comparte experiencias y construye comunidad en Villahermosa.

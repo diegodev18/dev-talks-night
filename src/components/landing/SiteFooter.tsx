@@ -19,7 +19,7 @@ const social = [
   },
   {
     label: "Repositorio en GitHub",
-    href: "https://github.com/diegodev18/dev-talks-night",
+    href: "https://github.com/diegodev18/dev-night-talks",
     Icon: GithubDark,
   },
 ] as const

@@ -43,19 +43,22 @@ function CommunityCard({ name, description, imageSrc, initials }: CommunityCardP
   const [imageFailed, setImageFailed] = useState(false)
 
   return (
-    <Card className="overflow-hidden pt-0!" size="sm">
-      <div className="relative aspect-4/3 w-full bg-muted">
+    <Card
+      className="gap-0 overflow-hidden p-0 py-0 data-[size=sm]:gap-0 data-[size=sm]:py-0"
+      size="sm"
+    >
+      <div className="relative aspect-4/3 w-full bg-card">
         {!imageFailed ? (
           <img
             src={imageSrc}
             alt={name}
-            className="absolute inset-0 size-full object-cover"
+            className="absolute inset-0 block size-full object-cover object-center"
             onError={() => setImageFailed(true)}
           />
         ) : null}
         {imageFailed ? (
           <div
-            className="flex size-full items-center justify-center"
+            className="flex size-full items-center justify-center bg-muted"
             aria-hidden
           >
             <span className="font-heading text-2xl font-semibold tracking-tight text-muted-foreground">
@@ -64,7 +67,7 @@ function CommunityCard({ name, description, imageSrc, initials }: CommunityCardP
           </div>
         ) : null}
       </div>
-      <CardHeader className="pt-3">
+      <CardHeader className="border-0 px-3 pb-3 pt-3 sm:px-4 sm:pb-4">
         <CardTitle className="font-heading text-base sm:text-lg">{name}</CardTitle>
         <CardDescription className="text-pretty text-xs sm:text-sm">
           {description}

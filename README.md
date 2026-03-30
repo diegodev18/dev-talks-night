@@ -1,73 +1,57 @@
-# React + TypeScript + Vite
+# Dev Night Talks — sitio web
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Sitio de la comunidad **Dev Night Talks** (Villahermosa): landing con información del evento, enlaces a Meetup, agenda en calendario (`.ics`), página de **comunidades hermanas** y mapa de ubicación (LATI).
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- [React](https://react.dev/) 19 y [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vite.dev/) 8
+- [Tailwind CSS](https://tailwindcss.com/) 4 con plugin de Vite
+- [shadcn/ui](https://ui.shadcn.com/) (Radix) y [Hugeicons](https://hugeicons.com/)
+- [React Router](https://reactrouter.com/) 7
 
-## React Compiler
+## Requisitos
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Node.js reciente (LTS recomendado)
+- [pnpm](https://pnpm.io/) (el repo incluye `pnpm-lock.yaml`)
 
-## Expanding the ESLint configuration
+## Scripts
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+| Comando     | Descripción                          |
+| ----------- | ------------------------------------ |
+| `pnpm dev`  | Servidor de desarrollo con HMR       |
+| `pnpm build`| `tsc -b` y compilación de producción |
+| `pnpm preview` | Vista previa del build estático   |
+| `pnpm lint` | ESLint                               |
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Rutas
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- `/` — Landing (hero, nosotros, evento, programa, FAQ, partners, CTA Meetup).
+- `/groups` — Comunidades relacionadas (AWS, Cursor, Claude Villahermosa); imágenes en `public/groups/*.webp`.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+La navegación del header usa `Link` de React Router; las anclas de la landing usan `/#sección` para funcionar también desde `/groups`.
+
+## Estructura relevante
+
+```
+src/
+  App.tsx              # Router y scroll a hash en la home
+  pages/
+    Landing.tsx
+    Groups.tsx
+  components/
+    landing/           # Secciones y header/footer
+    layout/Layout.tsx
+    ui/                # Componentes shadcn
+public/
+  dev-night-talks.ics  # Evento para calendario
+  groups/              # Imágenes WebP de la página Grupos
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Variables de entorno
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+No hay variables obligatorias para desarrollo local. El mapa en “Qué es Dev Night Talks” usa embed de OpenStreetMap y un enlace a la ficha de Google Maps (las URLs `/place/` de Google no se pueden incrustar de forma fiable en iframes de terceros sin Maps Embed API + clave).
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Licencia y créditos
+
+Revisa el repositorio en GitHub para licencia y colaboradores: [github.com/diegodev18/dev-night-talks](https://github.com/diegodev18/dev-night-talks).

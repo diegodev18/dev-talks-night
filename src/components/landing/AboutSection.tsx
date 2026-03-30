@@ -1,17 +1,23 @@
-/** Ubicación de referencia del meetup (Villahermosa). */
-const ABOUT_MAP_LAT = 17.9782405
-const ABOUT_MAP_LNG = -92.945807
+/** Punto de la ficha de LATI en Google (coordenadas del lugar). */
+const LATI_MAP_LAT = 17.9782354
+const LATI_MAP_LNG = -92.9432321
 
-/** Encuadre ~barrio alrededor del punto (OSM embed: minLon, minLat, maxLon, maxLat). */
-const MAP_BBOX_DELTA_LON = 0.015
-const MAP_BBOX_DELTA_LAT = 0.012
+/**
+ * Enlace a la ficha oficial en Google Maps (abrir en pestaña nueva).
+ * Google no permite incrustar muchas URLs `/place/` en iframes de terceros → “refused to connect”.
+ */
+const latiGoogleMapsPlaceUrl =
+  "https://www.google.com/maps/place/LATI+-+Laboratorio+de+Arte,+Tecnolog%C3%ADa+e+Innovaci%C3%B3n/@17.9782405,-92.945807,17z/data=!3m2!4b1!5s0x85edd9d5a71b761d:0x58c7bec6386d1dee!4m6!3m5!1s0x85edd700ca2899cd:0xae5143e7ca2647f0!8m2!3d17.9782354!4d-92.9432321!16s%2Fg%2F11lm_scqs2?hl=es"
 
-const aboutMapEmbedSrc = (() => {
-  const minLon = ABOUT_MAP_LNG - MAP_BBOX_DELTA_LON
-  const maxLon = ABOUT_MAP_LNG + MAP_BBOX_DELTA_LON
-  const minLat = ABOUT_MAP_LAT - MAP_BBOX_DELTA_LAT
-  const maxLat = ABOUT_MAP_LAT + MAP_BBOX_DELTA_LAT
-  const marker = `${ABOUT_MAP_LAT}%2C${ABOUT_MAP_LNG}`
+/** Mapa embebido (OpenStreetMap; sí permite iframe sin clave). */
+const latiMapEmbedSrc = (() => {
+  const dLon = 0.015
+  const dLat = 0.012
+  const minLon = LATI_MAP_LNG - dLon
+  const maxLon = LATI_MAP_LNG + dLon
+  const minLat = LATI_MAP_LAT - dLat
+  const maxLat = LATI_MAP_LAT + dLat
+  const marker = `${LATI_MAP_LAT}%2C${LATI_MAP_LNG}`
   return `https://www.openstreetmap.org/export/embed.html?bbox=${minLon},${minLat},${maxLon},${maxLat}&layer=mapnik&marker=${marker}`
 })()
 
@@ -56,14 +62,24 @@ export function AboutSection() {
           </li>
         </ul>
       </div>
-      <div className="relative aspect-4/3 min-h-64 w-full overflow-hidden ring-1 ring-foreground/10">
-        <iframe
-          title="Mapa del lugar del meetup en Villahermosa"
-          src={aboutMapEmbedSrc}
-          className="absolute inset-0 size-full border-0"
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-        />
+      <div className="flex flex-col gap-2">
+        <div className="relative aspect-4/3 min-h-64 w-full overflow-hidden ring-1 ring-foreground/10">
+          <iframe
+            title="Mapa del lugar del meetup — LATI (OpenStreetMap)"
+            src={latiMapEmbedSrc}
+            className="absolute inset-0 size-full border-0"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+        </div>
+        <a
+          href={latiGoogleMapsPlaceUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-sm text-primary underline decoration-primary/40 underline-offset-4 hover:decoration-primary"
+        >
+          Abrir ubicación en Google Maps (LATI)
+        </a>
       </div>
     </section>
   )

@@ -77,7 +77,7 @@ export function SiteHeader() {
             <Button variant="ghost" size="sm" asChild>
               <Link to="/">Inicio</Link>
             </Button>
-            <ArrowSeparator />
+            <div className="mx-1 h-5 w-px bg-border" />
             {pageNav.map((item) => (
               <Button key={item.label} variant="ghost" size="sm" asChild>
                 <Link to={item.to}>{item.label}</Link>

@@ -1,5 +1,6 @@
 import { ArrowRight01Icon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
+import { useEffect, useState } from "react"
 import { Link, useLocation } from "react-router-dom"
 
 import { Button } from "@/components/ui/button"
@@ -23,20 +24,82 @@ const pageNav: NavItem[] = [
   { label: "Comunidades", to: "/groups", type: "page" },
 ]
 
-function ArrowSeparator() {
+function ArrowSeparator({ delay }: { delay: number }) {
   return (
     <HugeiconsIcon
       icon={ArrowRight01Icon}
       strokeWidth={2}
-      className="size-3 text-muted-foreground"
+      className="size-3 text-muted-foreground nav-item-anim"
+      style={{ animationDelay: `${delay}ms` }}
       aria-hidden
     />
+  )
+}
+
+function NavButton({ item, delay }: { item: NavItem; delay: number }) {
+  return (
+    <Button
+      variant="ghost"
+      size="sm"
+      asChild
+      className="nav-item-anim"
+      style={{ animationDelay: `${delay}ms` }}
+    >
+      <Link to={item.to}>{item.label}</Link>
+    </Button>
   )
 }
 
 export function SiteHeader() {
   const location = useLocation()
   const isLanding = location.pathname === "/"
+  const [animKey, setAnimKey] = useState(0)
+
+  useEffect(() => {
+    setAnimKey((k) => k + 1)
+  }, [location.pathname])
+
+  const landingItems = landingNav.flatMap((item, i) => {
+    const delay = i * 40
+    const elements = [
+      <NavButton key={item.label} item={item} delay={delay} />,
+    ]
+    if (i < landingNav.length - 1) {
+      elements.push(<ArrowSeparator key={`arrow-${i}`} delay={delay + 20} />)
+    }
+    return elements
+  })
+
+  const separatorDelay = landingNav.length * 40
+  const separator = (
+    <div
+      key="separator"
+      className="mx-1 hidden h-5 w-px bg-border nav-item-anim md:block"
+      style={{ animationDelay: `${separatorDelay}ms` }}
+    />
+  )
+
+  const pageItems = pageNav.map((item) => {
+    const delay = separatorDelay + 40
+    return <NavButton key={item.label} item={item} delay={delay} />
+  })
+
+  const groupsItems = [
+    <NavButton
+      key="inicio"
+      item={{ label: "Inicio", to: "/", type: "page" }}
+      delay={0}
+    />,
+    <div
+      key="separator"
+      className="mx-1 h-5 w-px bg-border nav-item-anim"
+      style={{ animationDelay: "20ms" }}
+    />,
+    ...pageNav.map((item) => {
+      const delay = 40
+      return <NavButton key={item.label} item={item} delay={delay} />
+    }),
+  ]
 
   return (
     <header className="grid gap-6 border-b border-border pb-8 md:grid-cols-[auto_1fr_auto] md:items-center">
@@ -56,34 +119,15 @@ export function SiteHeader() {
         aria-label="Principal"
       >
         {isLanding ? (
-          <>
-            {landingNav.map((item, i) => (
-              <>
-                <Button key={item.label} variant="ghost" size="sm" asChild>
-                  <Link to={item.to}>{item.label}</Link>
-                </Button>
-                {i < landingNav.length - 1 && <ArrowSeparator />}
-              </>
-            ))}
-            <div className="mx-1 hidden h-5 w-px bg-border md:block" />
-            {pageNav.map((item) => (
-              <Button key={item.label} variant="ghost" size="sm" asChild>
-                <Link to={item.to}>{item.label}</Link>
-              </Button>
-            ))}
-          </>
+          <div key={`landing-${animKey}`} className="flex items-center gap-1">
+            {landingItems}
+            {separator}
+            {pageItems}
+          </div>
         ) : (
-          <>
-            <Button variant="ghost" size="sm" asChild>
-              <Link to="/">Inicio</Link>
-            </Button>
-            <div className="mx-1 h-5 w-px bg-border" />
-            {pageNav.map((item) => (
-              <Button key={item.label} variant="ghost" size="sm" asChild>
-                <Link to={item.to}>{item.label}</Link>
-              </Button>
-            ))}
-          </>
+          <div key={`groups-${animKey}`} className="flex items-center gap-1">
+            {groupsItems}
+          </div>
         )}
       </nav>
       <div className="flex md:justify-end">

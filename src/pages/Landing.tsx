@@ -7,20 +7,23 @@ import { PartnersSection } from "@/components/landing/PartnersSection"
 import { SiteFooter } from "@/components/landing/SiteFooter"
 import { SiteHeader } from "@/components/landing/SiteHeader"
 import { UpcomingEventSection } from "@/components/landing/UpcomingEventSection"
+import { DirectionalTransition } from "@/components/layout/DirectionalTransition"
 import { Layout } from "@/components/layout/Layout"
 
 export default function Landing() {
   return (
     <Layout>
-      <SiteHeader />
-      <HeroSection />
-      <AboutSection />
-      <UpcomingEventSection />
-      <AgendaPreviewSection />
-      <FaqSection />
-      <PartnersSection />
-      <FinalCtaSection />
-      <SiteFooter />
+      <DirectionalTransition>
+        <SiteHeader />
+        <HeroSection />
+        <AboutSection />
+        <UpcomingEventSection />
+        <AgendaPreviewSection />
+        <FaqSection />
+        <PartnersSection />
+        <FinalCtaSection />
+        <SiteFooter />
+      </DirectionalTransition>
     </Layout>
   )
 }

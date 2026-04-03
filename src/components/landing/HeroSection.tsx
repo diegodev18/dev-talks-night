@@ -3,6 +3,7 @@ import { HugeiconsIcon } from "@hugeicons/react"
 
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import { TransitionLink } from "@/components/layout/TransitionLink"
 
 export function HeroSection() {
   return (
@@ -24,14 +25,14 @@ export function HeroSection() {
         </p>
       </div>
       <Button className={cn("landing-cta")} size="lg" asChild>
-        <a href="#final-cta">
+        <TransitionLink to="/join">
           Join the Conversation
           <HugeiconsIcon
             icon={ArrowRight01Icon}
             data-icon="inline-end"
             strokeWidth={2}
           />
-        </a>
+        </TransitionLink>
       </Button>
     </section>
   )

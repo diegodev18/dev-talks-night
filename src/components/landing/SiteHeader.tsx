@@ -3,6 +3,8 @@ import { HugeiconsIcon } from "@hugeicons/react"
 import { useEffect, useState } from "react"
 import { Link, useLocation } from "react-router-dom"
 
+import { TransitionLink } from "@/components/layout/TransitionLink"
+
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
@@ -132,7 +134,7 @@ export function SiteHeader() {
       </nav>
       <div className="flex md:justify-end">
         <Button className={cn("landing-cta")} size="default" asChild>
-          <Link to="/#final-cta">Join the Conversation</Link>
+          <TransitionLink to="/join">Join the Conversation</TransitionLink>
         </Button>
       </div>
     </header>

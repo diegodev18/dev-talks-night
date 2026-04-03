@@ -24,6 +24,7 @@ const landingNav: NavItem[] = [
 
 const pageNav: NavItem[] = [
   { label: "Comunidades", to: "/groups", type: "page" },
+  { label: "Contribuir", to: "/contribute", type: "page" },
 ]
 
 function ArrowSeparator({ delay }: { delay: number }) {
@@ -81,9 +82,21 @@ export function SiteHeader() {
     />
   )
 
-  const pageItems = pageNav.map((item) => {
-    const delay = separatorDelay + 40
-    return <NavButton key={item.label} item={item} delay={delay} />
+  const pageItems = pageNav.flatMap((item, i) => {
+    const delay = separatorDelay + i * 40
+    const elements = [
+      <NavButton key={item.label} item={item} delay={delay} />,
+    ]
+    if (i < pageNav.length - 1) {
+      elements.push(
+        <div
+          key={`sep-${i}`}
+          className="mx-1 h-5 w-px bg-border nav-item-anim"
+          style={{ animationDelay: `${delay + 20}ms` }}
+        />
+      )
+    }
+    return elements
   })
 
   const groupsItems = [
@@ -97,9 +110,21 @@ export function SiteHeader() {
       className="mx-1 h-5 w-px bg-border nav-item-anim"
       style={{ animationDelay: "20ms" }}
     />,
-    ...pageNav.map((item) => {
-      const delay = 40
-      return <NavButton key={item.label} item={item} delay={delay} />
+    ...pageNav.flatMap((item, i) => {
+      const delay = 40 + i * 40
+      const elements = [
+        <NavButton key={item.label} item={item} delay={delay} />,
+      ]
+      if (i < pageNav.length - 1) {
+        elements.push(
+          <div
+            key={`sep-${i}`}
+            className="mx-1 h-5 w-px bg-border nav-item-anim"
+            style={{ animationDelay: `${delay + 20}ms` }}
+          />
+        )
+      }
+      return elements
     }),
   ]
 

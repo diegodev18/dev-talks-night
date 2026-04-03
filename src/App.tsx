@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom"
 import Landing from "@/pages/Landing"
 import Groups from "@/pages/Groups"
 import Join from "@/pages/Join"
+import Contribute from "@/pages/Contribute"
 
 function ScrollToHash() {
   const { pathname, hash } = useLocation()
@@ -34,6 +35,7 @@ function AppRoutes() {
         <Route path="/" element={<Landing />} />
         <Route path="/groups" element={<Groups />} />
         <Route path="/join" element={<Join />} />
+        <Route path="/contribute" element={<Contribute />} />
       </Routes>
     </>
   )

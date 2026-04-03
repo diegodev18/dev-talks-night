@@ -11,6 +11,11 @@
       "sourceType": "github",
       "computedHash": "bbc31a48537b473ff4feea6360ef0de3bfdcbef26c14f4967a5deefe8ca801d3"
     },
+    "vercel-react-view-transitions": {
+      "source": "vercel-labs/agent-skills",
+      "sourceType": "github",
+      "computedHash": "db55fee57546ae8b7cee3d9cc08e8e810bf78cce43e2d3dd26eea69e1bf357ae"
+    },
     "web-design-guidelines": {
       "source": "vercel-labs/agent-skills",
       "sourceType": "github",

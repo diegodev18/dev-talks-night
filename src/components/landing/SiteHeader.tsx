@@ -1,4 +1,4 @@
-import { ArrowRight01Icon } from "@hugeicons/core-free-icons"
+import { ArrowRight01Icon, Menu01Icon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { useEffect, useState } from "react"
 import { Link, useLocation } from "react-router-dom"
@@ -6,6 +6,15 @@ import { Link, useLocation } from "react-router-dom"
 import { TransitionLink } from "@/components/layout/TransitionLink"
 
 import { Button } from "@/components/ui/button"
+import { Separator } from "@/components/ui/separator"
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
 import { cn } from "@/lib/utils"
 
 type NavItem = {
@@ -19,7 +28,6 @@ const landingNav: NavItem[] = [
   { label: "Evento", to: "/#evento", type: "section" },
   { label: "Programa", to: "/#agenda", type: "section" },
   { label: "FAQ", to: "/#faq", type: "section" },
-  { label: "Comunidad", to: "/#partners", type: "section" },
 ]
 
 const pageNav: NavItem[] = [
@@ -51,6 +59,16 @@ function NavButton({ item, delay }: { item: NavItem; delay: number }) {
     >
       <Link to={item.to}>{item.label}</Link>
     </Button>
+  )
+}
+
+function MobileNavButton({ item }: { item: NavItem }) {
+  return (
+    <SheetClose asChild>
+      <Button variant="ghost" className="w-full justify-start" asChild>
+        <Link to={item.to}>{item.label}</Link>
+      </Button>
+    </SheetClose>
   )
 }
 
@@ -129,21 +147,51 @@ export function SiteHeader() {
     }),
   ]
 
+  const mobileNavItems = isLanding
+    ? [...landingNav, ...pageNav]
+    : [{ label: "Inicio", to: "/", type: "page" as const }, ...pageNav]
+
   return (
     <header className="grid gap-6 border-b border-border pb-8 md:grid-cols-[auto_1fr_auto] md:items-center">
-      <Link
-        to="/"
-        className="flex flex-col gap-0 leading-none outline-none focus-visible:ring-1 focus-visible:ring-ring"
-      >
-        <span className="font-heading text-[0.65rem] font-medium tracking-[0.2em] text-muted-foreground">
-          DEV
-        </span>
-        <span className="font-heading text-sm font-semibold tracking-tight text-foreground sm:text-base">
-          NIGHT TALKS
-        </span>
-      </Link>
+      <div className="flex items-center gap-2">
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button variant="ghost" size="icon-sm" className="md:hidden">
+              <HugeiconsIcon icon={Menu01Icon} strokeWidth={2} />
+              <span className="sr-only">Abrir menu</span>
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="left">
+            <SheetHeader>
+              <SheetTitle className="sr-only">Navegacion</SheetTitle>
+            </SheetHeader>
+            <nav className="flex flex-col gap-1 p-4" aria-label="Movil">
+              {mobileNavItems.map((item) => (
+                <MobileNavButton key={item.label} item={item} />
+              ))}
+              <Separator className="my-2" />
+              <SheetClose asChild>
+                <Button className="w-full" asChild>
+                  <TransitionLink to="/join">Join the Conversation</TransitionLink>
+                </Button>
+              </SheetClose>
+            </nav>
+          </SheetContent>
+        </Sheet>
+        <Link
+          to="/"
+          className="flex flex-col gap-0 leading-none outline-none focus-visible:ring-1 focus-visible:ring-ring"
+        >
+          <span className="font-heading text-[0.65rem] font-medium tracking-[0.2em] text-muted-foreground">
+            DEV
+          </span>
+          <span className="font-heading text-sm font-semibold tracking-tight text-foreground sm:text-base">
+            NIGHT TALKS
+          </span>
+        </Link>
+      </div>
       <nav
-        className="flex flex-wrap items-center justify-start gap-1 md:justify-center"
+        className="hidden flex-wrap items-center justify-center gap-1 md:flex"
         aria-label="Principal"
       >
         {isLanding ? (
@@ -158,7 +206,7 @@ export function SiteHeader() {
           </div>
         )}
       </nav>
-      <div className="flex md:justify-end">
+      <div className="hidden md:flex md:justify-end">
         <Button className={cn("landing-cta")} size="default" asChild>
           <TransitionLink to="/join">Join the Conversation</TransitionLink>
         </Button>

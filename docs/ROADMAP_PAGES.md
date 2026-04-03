@@ -13,7 +13,7 @@ Este documento lista las páginas que se planean agregar al proyecto **Dev Night
 | Alta | Eventos | `/events` | Pendiente |
 | Alta | Speakers | `/speakers` | Pendiente |
 | Alta | Galería | `/gallery` | Pendiente |
-| Media | Blog | `/blog` | Pendiente |
+| Media | Blog | `/blog` | Completado |
 | Media | Código de Conducta | `/conduct` | Pendiente |
 | Baja | Contacto | `/contact` | Pendiente |
 | Baja | Sponsors | `/sponsors` | Pendiente |
@@ -167,16 +167,16 @@ type BlogPost = {
 
 ### To-dos
 
-- [ ] Crear `src/pages/BlogIndex.tsx` con layout base
-- [ ] Crear `src/pages/BlogPost.tsx` para posts individuales
-- [ ] Registrar rutas `/blog` y `/blog/:slug` en `src/App.tsx`
-- [ ] Crear componente `src/components/blog/PostCard.tsx`
-- [ ] Definir tipo `BlogPost` y datos estáticos de ejemplo (al menos 3 posts)
-- [ ] Implementar lista de posts con fecha y excerpt
-- [ ] Implementar vista de post individual con renderizado de contenido
-- [ ] Agregar navegación entre posts (anterior / siguiente)
-- [ ] Agregar link "Volver al blog" en post individual
-- [ ] Verificar con `pnpm build` y `pnpm lint`
+- [x] Crear `src/pages/BlogIndex.tsx` con layout base
+- [x] Crear `src/pages/BlogPost.tsx` para posts individuales
+- [x] Registrar rutas `/blog` y `/blog/:slug` en `src/App.tsx`
+- [x] Crear componente `src/components/blog/PostCard.tsx`
+- [x] Definir tipo `BlogPost` y datos estáticos de ejemplo (al menos 3 posts)
+- [x] Implementar lista de posts con fecha y excerpt
+- [x] Implementar vista de post individual con renderizado de contenido
+- [x] Agregar navegación entre posts (anterior / siguiente)
+- [x] Agregar link "Volver al blog" en post individual
+- [x] Verificar con `pnpm build` y `pnpm lint`
 
 ---
 

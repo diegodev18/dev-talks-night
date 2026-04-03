@@ -5,6 +5,8 @@ import Landing from "@/pages/Landing"
 import Groups from "@/pages/Groups"
 import Join from "@/pages/Join"
 import Contribute from "@/pages/Contribute"
+import BlogIndex from "@/pages/BlogIndex"
+import BlogPost from "@/pages/BlogPost"
 
 function ScrollToHash() {
   const { pathname, hash } = useLocation()
@@ -36,6 +38,8 @@ function AppRoutes() {
         <Route path="/groups" element={<Groups />} />
         <Route path="/join" element={<Join />} />
         <Route path="/contribute" element={<Contribute />} />
+        <Route path="/blog" element={<BlogIndex />} />
+        <Route path="/blog/:slug" element={<BlogPost />} />
       </Routes>
     </>
   )
